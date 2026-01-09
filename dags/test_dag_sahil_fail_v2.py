@@ -31,6 +31,7 @@ with DAG(
         on_success_callback=task_success_callback,
         on_failure_callback=task_failure_callback,
             retries=2,
+        retry_delay=timedelta(seconds=10),
         )
 
     t2 = PythonOperator(
@@ -39,6 +40,7 @@ with DAG(
         on_success_callback=task_success_callback,
         on_failure_callback=task_failure_callback,
             retries=2,
+        retry_delay=timedelta(seconds=10),
         )
 
     def write_observability():
