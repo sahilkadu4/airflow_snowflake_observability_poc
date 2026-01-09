@@ -1,4 +1,3 @@
-
 import sys
 import os
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
@@ -8,17 +7,17 @@ from airflow.providers.snowflake.hooks.snowflake import SnowflakeHook
 from datetime import datetime
 import time
 
-
 from observability_callbacks import dag_success_callback, dag_failure_callback
 from task_callbacks import task_success_callback, task_failure_callback
-
 
 def dummy_work():
     time.sleep(5)
 
+def fail_work():
+    raise Exception("Intentional failure for testing")
 
 with DAG(
-    dag_id="test_dag_sahil_v2",
+    dag_id="test_dag_sahil_fail_v2",
     start_date=datetime(2024, 1, 1),
     schedule=None,
     catchup=False,
@@ -26,20 +25,21 @@ with DAG(
     on_failure_callback=dag_failure_callback,
 ) as dag:
 
-
     t1 = PythonOperator(
         task_id="t1",
         python_callable=dummy_work,
         on_success_callback=task_success_callback,
         on_failure_callback=task_failure_callback,
-    )
+            retries=2,
+        )
 
     t2 = PythonOperator(
         task_id="t2",
-        python_callable=dummy_work,
+        python_callable=fail_work,
         on_success_callback=task_success_callback,
         on_failure_callback=task_failure_callback,
-    )
+            retries=2,
+        )
 
     def write_observability():
         ctx = get_current_context()
@@ -67,7 +67,6 @@ with DAG(
         start_time_s = _to_iso(start_time)
         end_time_s = _to_iso(end_time)
 
-        # Simple INSERT for PoC (non-idempotent) — logged_at set by Snowflake
         sql = """
         INSERT INTO MONITORING.AIRFLOW_DAG_RUNS
             (dag_id, dag_run_id, run_type, execution_date, start_time, end_time, status, logged_at)
@@ -77,7 +76,6 @@ with DAG(
         params = [dag_id, dag_run_id, str(run_type), execution_date_s, start_time_s, end_time_s, 'SUCCESS']
 
         hook = SnowflakeHook(snowflake_conn_id='snowflake')
-        # add a visible print so scheduler logs show the intent
         print(f"Writing observability row for {dag_id} / {dag_run_id}")
         hook.run(sql, parameters=params)
         print("Observability write executed")
