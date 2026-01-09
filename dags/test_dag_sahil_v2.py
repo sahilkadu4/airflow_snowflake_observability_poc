@@ -18,7 +18,7 @@ def dummy_work():
 
 
 with DAG(
-    dag_id="test_dag_sahil_v2",
+    dag_id="test_dag_sahil_new_v2",
     start_date=datetime(2024, 1, 1),
     schedule=None,
     catchup=False,

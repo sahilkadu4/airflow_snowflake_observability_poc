@@ -4,7 +4,7 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from airflow import DAG
 from airflow.operators.python import PythonOperator, get_current_context
 from airflow.providers.snowflake.hooks.snowflake import SnowflakeHook
-from datetime import datetime
+from datetime import datetime, timedelta
 import time
 
 from observability_callbacks import dag_success_callback, dag_failure_callback
@@ -14,7 +14,7 @@ def dummy_work():
     time.sleep(5)
 
 def fail_work():
-    raise Exception("Intentional failure for testing")
+    1 / 0  # This will raise ZeroDivisionError
 
 with DAG(
     dag_id="test_dag_sahil_fail_v2",

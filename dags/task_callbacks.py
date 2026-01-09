@@ -29,28 +29,9 @@ def _insert_task_run(context, status: str):
         duration = None
 
     sql = """
-    MERGE INTO MONITORING.AIRFLOW_TASK_RUNS t
-    USING (
-        SELECT %s as dag_id,
-               %s as dag_run_id,
-               %s as task_id,
-               %s as try_number,
-               %s as task_state,
-               %s::timestamp_ntz as start_time,
-               %s::timestamp_ntz as end_time,
-               %s::float as duration_seconds,
-               current_timestamp() as logged_at
-    ) s
-    ON t.dag_run_id = s.dag_run_id AND t.task_id = s.task_id AND t.try_number = s.try_number
-    WHEN MATCHED THEN UPDATE SET
-        dag_id = s.dag_id,
-        task_state = s.task_state,
-        start_time = s.start_time,
-        end_time = s.end_time,
-        duration_seconds = s.duration_seconds,
-        logged_at = s.logged_at
-    WHEN NOT MATCHED THEN INSERT (dag_id, dag_run_id, task_id, try_number, task_state, start_time, end_time, duration_seconds, logged_at)
-    VALUES (s.dag_id, s.dag_run_id, s.task_id, s.try_number, s.task_state, s.start_time, s.end_time, s.duration_seconds, s.logged_at)
+    INSERT INTO MONITORING.AIRFLOW_TASK_RUNS
+        (dag_id, dag_run_id, task_id, try_number, task_state, start_time, end_time, duration_seconds, logged_at)
+    VALUES (%s, %s, %s, %s, %s, %s::timestamp_ntz, %s::timestamp_ntz, %s::float, current_timestamp())
     """
 
     params = [
