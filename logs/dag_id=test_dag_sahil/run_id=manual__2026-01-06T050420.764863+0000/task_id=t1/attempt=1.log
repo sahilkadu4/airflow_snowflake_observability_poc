@@ -1,0 +1,11 @@
+{"timestamp":"2026-01-06T05:04:25.608258Z","level":"info","event":"DAG bundles loaded: dags-folder, example_dags","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager","filename":"manager.py","lineno":179}
+{"timestamp":"2026-01-06T05:04:25.609644Z","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/test_dag_sahil.py","logger":"airflow.models.dagbag.DagBag","filename":"dagbag.py","lineno":593}
+{"timestamp":"2026-01-06T05:04:27.759366Z","level":"warning","event":"The `airflow.operators.python.PythonOperator` attribute is deprecated. Please use `'airflow.providers.standard.operators.python.PythonOperator'`.","category":"DeprecatedImportWarning","filename":"/opt/airflow/dags/test_dag_sahil.py","lineno":2,"logger":"py.warnings"}
+{"timestamp":"2026-01-06T05:04:27.831586Z","level":"info","event":"Task instance is in running state","logger":"task.stdout"}
+{"timestamp":"2026-01-06T05:04:27.832150Z","level":"info","event":" Previous state of the Task instance: TaskInstanceState.QUEUED","logger":"task.stdout"}
+{"timestamp":"2026-01-06T05:04:27.832687Z","level":"info","event":"Current task name:t1","logger":"task.stdout"}
+{"timestamp":"2026-01-06T05:04:27.833126Z","level":"info","event":"Dag name:test_dag_sahil","logger":"task.stdout"}
+{"timestamp":"2026-01-06T05:04:32.834451Z","level":"info","event":"Done. Returned value was: None","logger":"airflow.task.operators.airflow.providers.standard.operators.python.PythonOperator","filename":"python.py","lineno":217}
+{"timestamp":"2026-01-06T05:04:32.889870Z","level":"info","event":"Task instance in success state","logger":"task.stdout"}
+{"timestamp":"2026-01-06T05:04:32.890507Z","level":"info","event":" Previous state of the Task instance: TaskInstanceState.RUNNING","logger":"task.stdout"}
+{"timestamp":"2026-01-06T05:04:32.890973Z","level":"info","event":"Task operator:<Task(PythonOperator): t1>","logger":"task.stdout"}

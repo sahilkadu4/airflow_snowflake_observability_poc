@@ -1,0 +1,19 @@
+{"timestamp":"2026-01-05T16:36:05.816111Z","level":"info","event":"DAG bundles loaded: dags-folder, example_dags","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager","filename":"manager.py","lineno":179}
+{"timestamp":"2026-01-05T16:36:05.820328Z","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/test_snowflake_connection.py","logger":"airflow.models.dagbag.DagBag","filename":"dagbag.py","lineno":593}
+{"timestamp":"2026-01-05T16:36:08.097274Z","level":"warning","event":"The `airflow.operators.python.PythonOperator` attribute is deprecated. Please use `'airflow.providers.standard.operators.python.PythonOperator'`.","category":"DeprecatedImportWarning","filename":"/opt/airflow/dags/test_snowflake_connection.py","lineno":2,"logger":"py.warnings"}
+{"timestamp":"2026-01-05T16:36:08.224867Z","level":"info","event":"Task instance is in running state","logger":"task.stdout"}
+{"timestamp":"2026-01-05T16:36:08.225450Z","level":"info","event":" Previous state of the Task instance: TaskInstanceState.QUEUED","logger":"task.stdout"}
+{"timestamp":"2026-01-05T16:36:08.225890Z","level":"info","event":"Current task name:test_snowflake","logger":"task.stdout"}
+{"timestamp":"2026-01-05T16:36:08.226318Z","level":"info","event":"Dag name:test_snowflake_connection","logger":"task.stdout"}
+{"timestamp":"2026-01-05T16:36:12.990400Z","level":"info","event":"Snowflake Connector for Python Version: 4.0.0, Python Version: 3.12.12, Platform: Linux-5.10.102.1-microsoft-standard-WSL2-x86_64-with-glibc2.36","logger":"snowflake.connector.connection","filename":"connection.py","lineno":586}
+{"timestamp":"2026-01-05T16:36:12.991248Z","level":"info","event":"Connecting to GLOBAL Snowflake domain","logger":"snowflake.connector.connection","filename":"connection.py","lineno":1629}
+{"timestamp":"2026-01-05T16:36:18.845961Z","level":"info","event":"Running statement: SELECT CURRENT_TIMESTAMP;, parameters: None","logger":"airflow.task.hooks.airflow.providers.snowflake.hooks.snowflake.SnowflakeHook","filename":"snowflake.py","lineno":584}
+{"timestamp":"2026-01-05T16:36:18.846506Z","level":"info","event":"Running statement: SELECT CURRENT_TIMESTAMP;, parameters: None","logger":"airflow.task.hooks.airflow.providers.snowflake.hooks.snowflake.SnowflakeHook","filename":"sql.py","lineno":806}
+{"timestamp":"2026-01-05T16:36:18.956919Z","level":"info","event":"Rows affected: 1","logger":"airflow.task.hooks.airflow.providers.snowflake.hooks.snowflake.SnowflakeHook","filename":"sql.py","lineno":818}
+{"timestamp":"2026-01-05T16:36:18.960292Z","level":"info","event":"Rows affected: 1","logger":"airflow.task.hooks.airflow.providers.snowflake.hooks.snowflake.SnowflakeHook","filename":"snowflake.py","lineno":597}
+{"timestamp":"2026-01-05T16:36:18.960590Z","level":"info","event":"Snowflake query id: 01c18824-0001-6f20-000d-20a200026016","logger":"airflow.task.hooks.airflow.providers.snowflake.hooks.snowflake.SnowflakeHook","filename":"snowflake.py","lineno":598}
+{"timestamp":"2026-01-05T16:36:19.216438Z","level":"info","event":"Snowflake responded with: (datetime.datetime(2026, 1, 5, 8, 36, 3, 173000, tzinfo=<DstTzInfo 'America/Los_Angeles' PST-1 day, 16:00:00 STD>),)","logger":"task.stdout"}
+{"timestamp":"2026-01-05T16:36:19.216495Z","level":"info","event":"Done. Returned value was: None","logger":"airflow.task.operators.airflow.providers.standard.operators.python.PythonOperator","filename":"python.py","lineno":217}
+{"timestamp":"2026-01-05T16:36:19.312631Z","level":"info","event":"Task instance in success state","logger":"task.stdout"}
+{"timestamp":"2026-01-05T16:36:19.315188Z","level":"info","event":" Previous state of the Task instance: TaskInstanceState.RUNNING","logger":"task.stdout"}
+{"timestamp":"2026-01-05T16:36:19.316452Z","level":"info","event":"Task operator:<Task(PythonOperator): test_snowflake>","logger":"task.stdout"}
